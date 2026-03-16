@@ -50,7 +50,7 @@ export function NextBanner() {
         {t('header.welcome')}{' '}
       </span>
       <span className="font-bold text-transparent bg-clip-text bg-gradient-to-l from-[#40EBE3] to-[#4A51FF]">
-        RAGFlow
+        郝山区百事通
       </span>
     </h1>
   );

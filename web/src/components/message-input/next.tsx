@@ -291,13 +291,13 @@ export function NextMessageInput({
               />
 
               <Button
-                size="icon-xs"
+                size="icon-lg"
                 disabled={
                   sendDisabled || isUploading || sendLoading || !value.trim()
                 }
                 data-testid="chat-detail-send"
               >
-                <Send />
+                <Send className="size-6" />
                 <span className="sr-only">Send message</span>
               </Button>
             </div>

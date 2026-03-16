@@ -1,5 +1,4 @@
 import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import { upperFirst } from 'lodash';
 import { initReactI18next } from 'react-i18next';
 
@@ -39,7 +38,7 @@ export const supportedLanguages = supportedLanguageCodes.map((code) => {
   };
 });
 
-export const DEFAULT_LANGUAGE_CODE = LanguageAbbreviation.En;
+export const DEFAULT_LANGUAGE_CODE = LanguageAbbreviation.Zh;
 
 const resources = {
   [LanguageAbbreviation.En]: translation_en,
@@ -47,14 +46,11 @@ const resources = {
 
 i18n
   .use(initReactI18next)
-  .use(LanguageDetector)
+  // .use(LanguageDetector) // 禁用浏览器语言检测，强制使用中文
   .init({
-    detection: {
-      lookupLocalStorage: 'lng',
-    },
     supportedLngs: supportedLanguageCodes,
     resources,
-    fallbackLng: DEFAULT_LANGUAGE_CODE,
+    lng: DEFAULT_LANGUAGE_CODE, // 强制使用中文作为默认语言
     interpolation: {
       escapeValue: false,
     },

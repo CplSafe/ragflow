@@ -12,13 +12,40 @@ import {
 } from '@/hooks/use-chat-request';
 import i18n, { changeLanguageAsync } from '@/locales/config';
 import { buildMessageUuidWithRole } from '@/utils/chat';
-import React, { forwardRef, useMemo } from 'react';
+import { Loader2 } from 'lucide-react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import { useSendButtonDisabled } from '../hooks/use-button-disabled';
 import {
   useGetSharedChatSearchParams,
   useSendSharedMessage,
 } from '../hooks/use-send-shared-message';
 import { buildMessageItemReference } from '../utils';
+
+// 加载状态提示组件
+const LoadingIndicator = ({ sendLoading }: { sendLoading: boolean }) => {
+  const [loadingText, setLoadingText] = useState('请稍后，正在分析您的问题...');
+
+  useEffect(() => {
+    if (!sendLoading) return;
+
+    const timer1 = setTimeout(() => {
+      setLoadingText('正在检索相关知识库...');
+    }, 1500);
+
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [sendLoading]);
+
+  if (!sendLoading) return null;
+
+  return (
+    <div className="flex items-center gap-2 p-4 text-muted-foreground">
+      <Loader2 className="size-4 animate-spin" />
+      <span className="text-sm">{loadingText}</span>
+    </div>
+  );
+};
 
 const ChatContainer = () => {
   const {
@@ -64,6 +91,17 @@ const ChatContainer = () => {
     return <div>empty</div>;
   }
 
+  // 检查最后一条 AI 消息是否有内容
+  const lastMessage = derivedMessages?.[derivedMessages.length - 1];
+  const hasLastAssistantContent =
+    lastMessage?.role === MessageType.Assistant &&
+    lastMessage?.content &&
+    lastMessage.content.length > 0;
+
+  // 判断是否需要显示加载提示：
+  // 条件：正在加载中，且最后一条 AI 消息没有内容
+  const showLoadingIndicator = sendLoading && !hasLastAssistantContent;
+
   return (
     <>
       <EmbedContainer
@@ -101,11 +139,18 @@ const ChatContainer = () => {
                     }
                     index={i}
                     clickDocumentButton={clickDocumentButton}
-                    showLikeButton={false}
-                    showLoudspeaker={false}
+                    showLikeButton
+                    showLoudspeaker
+                    showPrompt={false}
+                    showAiDisclaimer
+                    collapsible
                   ></MessageItem>
                 );
               })}
+              {/* 加载状态提示 - 只在AI还没有输出内容时显示 */}
+              {showLoadingIndicator && (
+                <LoadingIndicator sendLoading={sendLoading} />
+              )}
             </div>
             <div ref={scrollRef} />
           </div>
@@ -124,7 +169,7 @@ const ChatContainer = () => {
                 uploadMethod="external_upload_and_parse"
                 showUploadIcon={false}
                 stopOutputMessage={stopOutputMessage}
-                showReasoning
+                showReasoning={false}
                 showInternet={chatInfo?.has_tavily_key}
               ></NextMessageInput>
             </div>

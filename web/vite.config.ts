@@ -33,71 +33,71 @@ export default defineConfig(({ mode }) => {
   const proxySchemes = {
     python: {
       '/api/v1/admin': {
-        target: 'http://127.0.0.1:9381/',
+        target: 'http://36.134.216.176:9381/',
         changeOrigin: true,
         ws: true,
       },
       '/api': {
-        target: 'http://127.0.0.1:9380/',
+        target: 'http://36.134.216.176:9380/',
         changeOrigin: true,
         ws: true,
       },
       '/v1': {
-        target: 'http://127.0.0.1:9380/',
+        target: 'http://36.134.216.176:9380/',
         changeOrigin: true,
         ws: true,
       },
     },
     hybrid: {
       '/v1/system/config': {
-        target: 'http://127.0.0.1:9384/',
+        target: 'http://36.134.216.176:9384/',
         changeOrigin: true,
         ws: true,
       },
       '/v1/user/login': {
-        target: 'http://127.0.0.1:9384/',
+        target: 'http://36.134.216.176:9384/',
         changeOrigin: true,
         ws: true,
       },
       '/v1/user/logout': {
-        target: 'http://127.0.0.1:9384/',
+        target: 'http://36.134.216.176:9384/',
         changeOrigin: true,
         ws: true,
       },
       '/api/v1/admin/sandbox': {
-        target: 'http://127.0.0.1:9381/',
+        target: 'http://36.134.216.176:9381/',
         changeOrigin: true,
         ws: true,
       },
       '/api/v1/admin': {
-        target: 'http://127.0.0.1:9385/',
+        target: 'http://36.134.216.176:9385/',
         changeOrigin: true,
         ws: true,
       },
       '/api': {
-        target: 'http://127.0.0.1:9380/',
+        target: 'http://36.134.216.176:9380/',
         changeOrigin: true,
         ws: true,
       },
       '/v1': {
-        target: 'http://127.0.0.1:9380/',
+        target: 'http://36.134.216.176:9380/',
         changeOrigin: true,
         ws: true,
       },
     },
     go: {
       '/api/v1/admin': {
-        target: 'http://127.0.0.1:9385/',
+        target: 'http://36.134.216.176:9385/',
         changeOrigin: true,
         ws: true,
       },
       '/api': {
-        target: 'http://127.0.0.1:9384/',
+        target: 'http://36.134.216.176:9384/',
         changeOrigin: true,
         ws: true,
       },
       '/v1': {
-        target: 'http://127.0.0.1:9384/',
+        target: 'http://36.134.216.176:9384/',
         changeOrigin: true,
         ws: true,
       },

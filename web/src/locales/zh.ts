@@ -680,7 +680,7 @@ General：实体和关系提取提示来自 GitHub - microsoft/graphrag：基于
       delete: '删除',
     },
     chat: {
-      messagePlaceholder: '请输入消息...',
+      messagePlaceholder: '请和"赫山百事通"说说您的问题',
       exit: '退出',
       multipleModels: '多模型',
       applyModelConfigs: '应用模型配置',

@@ -380,7 +380,7 @@ export const AudioButton = ({
         </div>
       )}
 
-      <div className=" relative w-6 h-6 flex items-center justify-center">
+      <div className=" relative w-14 h-14 flex items-center justify-center">
         {isRecording && (
           <div className="absolute inset-0 size-full overflow-hidden flex items-center justify-center p-1">
             <VoiceVisualizer isRecording={isRecording} />
@@ -397,7 +397,6 @@ export const AudioButton = ({
 
         <Button
           variant="transparent"
-          size="icon-xs"
           // onMouseDown={() => {
           //   startRecording();
           // }}
@@ -412,7 +411,7 @@ export const AudioButton = ({
             }
           }}
           className={cn(
-            'border-0 p-2 rounded-md border-none bg-transparent hover:bg-state-success-5',
+            'border-0 rounded-md border-none bg-transparent hover:bg-state-success-5 w-full h-full',
             isRecording &&
               'animate-pulse !bg-state-success/20 text-state-success rounded-full',
           )}
@@ -420,13 +419,13 @@ export const AudioButton = ({
           data-testid={testId}
         >
           {isProcessing ? (
-            <Loader2 size={16} className=" animate-spin" />
+            <Loader2 size={28} className=" animate-spin" />
           ) : isRecording ? (
             <></>
           ) : (
-            // <Mic size={16} className="text-text-primary" />
-            // <Square size={12} className="text-text-primary" />
-            <Mic size={16} />
+            // <Mic size={28} className="text-text-primary" />
+            // <Square size={20} className="text-text-primary" />
+            <Mic size={28} className="size-7" />
           )}
         </Button>
       </div>
